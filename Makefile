@@ -1,6 +1,4 @@
 PYTHON		= python
-CC		= $(CROSS)gcc
-AR		= $(CROSS)ar
 VERSION=$(shell head -n 1 VERSION)
 INCDIR = include
 CFLAGS		= -Wall -I$(INCDIR) -Wextra -g -fPIC -DLIBI2C_VERSION="$(VERSION)"
@@ -42,6 +40,7 @@ libi2c.a:$(OBJECTS)
 	$(AR) $(ARFLAGS) $@ $^
 	mkdir -p build
 	cp libi2c.a build
+	cp include/i2c/*.h build
 
 libi2c.so:$(OBJECTS)
 	$(CC) $(LDSHFLAGS) -o $@ $^
